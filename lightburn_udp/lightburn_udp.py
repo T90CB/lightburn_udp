@@ -559,7 +559,7 @@ class LightBurnUDPCommunication:
             str or False: The response, or False on timeout or error.
         """
         resolved = _expand(file_path) if not self.remote else file_path
-        if not os.path.exists(resolved):
+        if not self.remote and not os.path.exists(resolved):
             print(f"Warning: file does not exist locally: {resolved}")
 
         command = "FORCELOAD" if force else "LOADFILE"
